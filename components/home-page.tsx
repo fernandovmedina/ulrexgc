@@ -14,8 +14,10 @@ import {
   Hammer,
   HardHat,
   House,
+  Mail,
   Menu,
   PaintRoller,
+  Phone,
   Ruler,
   ShieldCheck,
   Sparkles,
@@ -29,6 +31,10 @@ import { Spotlight } from "@/components/ui/spotlight";
 import { cn } from "@/lib/utils";
 
 type Language = "en" | "es";
+
+const CONTACT_EMAIL = "info@ulrexgc.com";
+const CONTACT_PHONE = "+1 (210) 956-7200";
+const CONTACT_PHONE_HREF = "tel:+12109567200";
 
 const englishCopy = {
   nav: [
@@ -62,8 +68,8 @@ const englishCopy = {
   projectsEyebrow: "Selected capabilities", projectsTitle: "Work that speaks", projectsAccent: "for itself.", projectsCopy: "Explore the kind of care, coordination, and versatility we bring to every build. Swipe, drag, or use the arrow keys.",
   reviewsEyebrow: "Client perspective", reviewsTitle: "Trust is built", reviewsAccent: "one project at a time.",
   contactEyebrow: "The next great project starts here", contactTitle: "Let’s build", contactMiddle: "something", contactAccent: "lasting.", contactCopy: "Tell us what you are planning. We will help clarify the scope, the right first step, and what it will take to bring it to life.", consultation: "Request a consultation", bilingual: "English + Spanish", serving: "Serving residential and commercial clients",
-  navigate: "Navigate", languages: "Languages", footerTagline: "Building. Innovating. Excellence.", footerClosing: "Built on craft. Backed by care.",
-  aria: { home: "Ulrex home", mainNav: "Main navigation", languageOptions: "Language options", openMenu: "Open menu", closeMenu: "Close menu", mobileNav: "Mobile navigation" },
+  emailLabel: "Or reach us directly", navigate: "Navigate", languages: "Languages", contactHeading: "Contact", footerTagline: "Building. Innovating. Excellence.", footerClosing: "Built on craft. Backed by care.",
+  aria: { home: "Ulrex home", mainNav: "Main navigation", languageOptions: "Language options", openMenu: "Open menu", closeMenu: "Close menu", mobileNav: "Mobile navigation", email: `Email Ulrex at ${CONTACT_EMAIL}`, phone: `Call Ulrex at ${CONTACT_PHONE}` },
 };
 
 const spanishCopy: typeof englishCopy = {
@@ -98,8 +104,8 @@ const spanishCopy: typeof englishCopy = {
   projectsEyebrow: "Capacidades destacadas", projectsTitle: "Trabajo que habla", projectsAccent: "por sí mismo.", projectsCopy: "Descubre el cuidado, la coordinación y la versatilidad que aportamos a cada obra. Desliza, arrastra o usa las flechas.",
   reviewsEyebrow: "La opinión de clientes", reviewsTitle: "La confianza se construye", reviewsAccent: "proyecto a proyecto.",
   contactEyebrow: "Tu próximo gran proyecto comienza aquí", contactTitle: "Construyamos", contactMiddle: "algo", contactAccent: "duradero.", contactCopy: "Cuéntanos qué estás planeando. Te ayudaremos a definir el alcance, el primer paso y lo necesario para hacerlo realidad.", consultation: "Solicita una consulta", bilingual: "Inglés + Español", serving: "Atendemos clientes residenciales y comerciales",
-  navigate: "Navegar", languages: "Idiomas", footerTagline: "Construimos. Innovamos. Excelencia.", footerClosing: "Hecho con oficio. Respaldado con atención.",
-  aria: { home: "Inicio de Ulrex", mainNav: "Navegación principal", languageOptions: "Opciones de idioma", openMenu: "Abrir menú", closeMenu: "Cerrar menú", mobileNav: "Navegación móvil" },
+  emailLabel: "O contáctanos directamente", navigate: "Navegar", languages: "Idiomas", contactHeading: "Contacto", footerTagline: "Construimos. Innovamos. Excelencia.", footerClosing: "Hecho con oficio. Respaldado con atención.",
+  aria: { home: "Inicio de Ulrex", mainNav: "Navegación principal", languageOptions: "Opciones de idioma", openMenu: "Abrir menú", closeMenu: "Cerrar menú", mobileNav: "Navegación móvil", email: `Escribe a Ulrex a ${CONTACT_EMAIL}`, phone: `Llama a Ulrex al ${CONTACT_PHONE}` },
 };
 
 const content: Record<Language, typeof englishCopy> = { en: englishCopy, es: spanishCopy };
@@ -259,14 +265,14 @@ function Contact({ copy, language }: { copy: PageCopy; language: Language }) {
   return (
     <section id="contact" className="relative overflow-hidden bg-[#d6aa55] px-5 py-24 text-[#061426] sm:px-8 lg:px-12 lg:py-32">
       <div className="blueprint-grid absolute inset-0 opacity-15" />
-      <div className="relative mx-auto grid max-w-[1344px] gap-10 lg:grid-cols-[1.2fr_.8fr] lg:items-end"><Reveal><p className="mb-5 font-mono text-[10px] font-bold uppercase tracking-[.28em]">{copy.contactEyebrow}</p><h2 className="max-w-4xl text-[clamp(3.2rem,7.5vw,7.4rem)] font-black uppercase leading-[.82] tracking-[-.065em]">{copy.contactTitle}<br />{copy.contactMiddle} <span className="text-white">{copy.contactAccent}</span></h2></Reveal><Reveal className="lg:pb-2" delay={.12}><p className="max-w-lg text-lg leading-8 text-[#061426]/65">{copy.contactCopy}</p><div className="mt-8 flex flex-col gap-3 sm:flex-row"><a href={`mailto:?subject=${encodeURIComponent(language === "es" ? "Consulta de proyecto — Ulrex" : "Project Consultation — Ulrex")}`} className="group flex h-14 items-center justify-center gap-3 bg-[#061426] px-7 font-mono text-[10px] font-bold uppercase tracking-[.18em] text-white transition hover:bg-[#102b45]">{copy.consultation} <ArrowRight className="size-4 transition group-hover:translate-x-1" /></a><span className="flex h-14 items-center justify-center gap-3 border border-[#061426]/25 px-7 font-mono text-[10px] font-bold uppercase tracking-[.18em]">{copy.bilingual}</span></div><p className="mt-4 font-mono text-[8px] uppercase tracking-[.16em] text-[#061426]/45">{copy.serving}</p></Reveal></div>
+      <div className="relative mx-auto grid max-w-[1344px] gap-10 lg:grid-cols-[1.2fr_.8fr] lg:items-end"><Reveal><p className="mb-5 font-mono text-[10px] font-bold uppercase tracking-[.28em]">{copy.contactEyebrow}</p><h2 className="max-w-4xl text-[clamp(3.2rem,7.5vw,7.4rem)] font-black uppercase leading-[.82] tracking-[-.065em]">{copy.contactTitle}<br />{copy.contactMiddle} <span className="text-white">{copy.contactAccent}</span></h2></Reveal><Reveal className="lg:pb-2" delay={.12}><p className="max-w-lg text-lg leading-8 text-[#061426]/65">{copy.contactCopy}</p><div className="mt-8 flex flex-col gap-3 sm:flex-row"><a href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(language === "es" ? "Consulta de proyecto — Ulrex" : "Project Consultation — Ulrex")}`} className="group flex h-14 items-center justify-center gap-3 bg-[#061426] px-7 font-mono text-[10px] font-bold uppercase tracking-[.18em] text-white transition hover:bg-[#102b45]">{copy.consultation} <ArrowRight className="size-4 transition group-hover:translate-x-1" /></a><span className="flex h-14 items-center justify-center gap-3 border border-[#061426]/25 px-7 font-mono text-[10px] font-bold uppercase tracking-[.18em]">{copy.bilingual}</span></div><p className="mt-6 font-mono text-[9px] uppercase tracking-[.2em] text-[#061426]/55">{copy.emailLabel}</p><div className="mt-2 flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-7"><a href={`mailto:${CONTACT_EMAIL}`} aria-label={copy.aria.email} className="inline-flex items-center gap-2 text-lg font-bold tracking-[-.01em] text-[#061426] underline decoration-[#061426]/30 underline-offset-[6px] transition hover:decoration-[#061426]"><Mail className="size-4" />{CONTACT_EMAIL}</a><a href={CONTACT_PHONE_HREF} aria-label={copy.aria.phone} className="inline-flex items-center gap-2 text-lg font-bold tracking-[-.01em] text-[#061426] underline decoration-[#061426]/30 underline-offset-[6px] transition hover:decoration-[#061426]"><Phone className="size-4" />{CONTACT_PHONE}</a></div><p className="mt-4 font-mono text-[8px] uppercase tracking-[.16em] text-[#061426]/45">{copy.serving}</p></Reveal></div>
     </section>
   );
 }
 
 function Footer({ copy }: { copy: PageCopy }) {
   return (
-    <footer className="bg-[#030d17] px-5 pb-8 pt-16 text-white sm:px-8 lg:px-12"><div className="mx-auto max-w-[1344px]"><div className="grid gap-12 border-b border-white/10 pb-12 md:grid-cols-[1fr_auto_auto]"><div className="flex items-center gap-4"><Image src="/logo_icon_with_transparent_background.png" alt="Ulrex General Contracting" width={70} height={70} className="size-16 object-contain" /><div><p className="text-lg font-black tracking-[.14em]">ULREX</p><p className="font-mono text-[9px] tracking-[.24em] text-[#d6aa55]">GENERAL CONTRACTING</p><p className="mt-3 text-xs text-white/40">{copy.footerTagline}</p></div></div><div><p className="mb-4 font-mono text-[9px] uppercase tracking-[.2em] text-[#d6aa55]">{copy.navigate}</p><div className="grid gap-2 text-sm text-white/55">{copy.nav.map((item) => <Link key={item.href} href={item.href} className="hover:text-white">{item.label}</Link>)}</div></div><div><p className="mb-4 font-mono text-[9px] uppercase tracking-[.2em] text-[#d6aa55]">{copy.languages}</p><div className="flex gap-3 text-xl"><span aria-label="English">🇺🇸</span><span aria-label="Español">🇪🇸</span></div><p className="mt-3 text-xs text-white/40">English / Español</p></div></div><div className="flex flex-col justify-between gap-3 pt-7 font-mono text-[8px] uppercase tracking-[.16em] text-white/30 sm:flex-row"><p>© {new Date().getFullYear()} Ulrex General Contracting</p><p>{copy.footerClosing}</p></div></div></footer>
+    <footer className="bg-[#030d17] px-5 pb-8 pt-16 text-white sm:px-8 lg:px-12"><div className="mx-auto max-w-[1344px]"><div className="grid gap-12 border-b border-white/10 pb-12 md:grid-cols-[1fr_auto_auto_auto]"><div className="flex items-center gap-4"><Image src="/logo_icon_with_transparent_background.png" alt="Ulrex General Contracting" width={70} height={70} className="size-16 object-contain" /><div><p className="text-lg font-black tracking-[.14em]">ULREX</p><p className="font-mono text-[9px] tracking-[.24em] text-[#d6aa55]">GENERAL CONTRACTING</p><p className="mt-3 text-xs text-white/40">{copy.footerTagline}</p></div></div><div><p className="mb-4 font-mono text-[9px] uppercase tracking-[.2em] text-[#d6aa55]">{copy.navigate}</p><div className="grid gap-2 text-sm text-white/55">{copy.nav.map((item) => <Link key={item.href} href={item.href} className="hover:text-white">{item.label}</Link>)}</div></div><div><p className="mb-4 font-mono text-[9px] uppercase tracking-[.2em] text-[#d6aa55]">{copy.contactHeading}</p><div className="grid gap-2 text-sm text-white/55"><a href={`mailto:${CONTACT_EMAIL}`} aria-label={copy.aria.email} className="inline-flex items-center gap-2 transition hover:text-white"><Mail className="size-3.5" />{CONTACT_EMAIL}</a><a href={CONTACT_PHONE_HREF} aria-label={copy.aria.phone} className="inline-flex items-center gap-2 transition hover:text-white"><Phone className="size-3.5" />{CONTACT_PHONE}</a></div></div><div><p className="mb-4 font-mono text-[9px] uppercase tracking-[.2em] text-[#d6aa55]">{copy.languages}</p><div className="flex gap-3 text-xl"><span aria-label="English">🇺🇸</span><span aria-label="Español">🇪🇸</span></div><p className="mt-3 text-xs text-white/40">English / Español</p></div></div><div className="flex flex-col justify-between gap-3 pt-7 font-mono text-[8px] uppercase tracking-[.16em] text-white/30 sm:flex-row"><p>© {new Date().getFullYear()} Ulrex General Contracting</p><p>{copy.footerClosing}</p></div></div></footer>
   );
 }
 
