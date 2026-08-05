@@ -24,7 +24,7 @@ import {
 import { Card } from "@/components/ui/card";
 import { CardStack, type CardStackItem } from "@/components/ui/card-stack";
 import TestimonialMarquee from "@/components/ui/marquee-01";
-import { SplineScene } from "@/components/ui/splite";
+import { LuxuryHomeScene } from "@/components/ui/luxury-home-scene";
 import { Spotlight } from "@/components/ui/spotlight";
 import { cn } from "@/lib/utils";
 
@@ -129,10 +129,9 @@ function Hero() {
           <Card className="relative h-full overflow-hidden rounded-[2rem] border-white/10 bg-[#081a2c]/70 shadow-[0_45px_100px_rgba(0,0,0,.45)]">
             <Spotlight className="left-1/2 top-1/2" size={520} />
             <div className="absolute inset-0 blueprint-grid opacity-30" />
-            <div className="absolute left-5 top-5 z-20 flex items-center gap-2 rounded-full border border-white/10 bg-[#061426]/70 px-3 py-2 backdrop-blur-md"><CircleDot className="size-3 text-[#d6aa55]" /><span className="font-mono text-[8px] uppercase tracking-[.2em] text-white/60">Interactive build model</span></div>
-            <SplineScene scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode" className="h-full w-full" />
+            <div className="absolute left-5 top-5 z-20 flex items-center gap-2 rounded-full border border-white/10 bg-[#061426]/70 px-3 py-2 backdrop-blur-md"><CircleDot className="size-3 text-[#d6aa55]" /><span className="font-mono text-[8px] uppercase tracking-[.2em] text-white/60">Luxury home transformation</span></div>
+            <LuxuryHomeScene className="h-full w-full" />
             <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#061426] to-transparent" />
-            <div className="absolute bottom-5 left-5 z-20"><p className="font-mono text-[8px] uppercase tracking-[.22em] text-[#e2be6c]">Drag to explore</p><p className="mt-1 text-sm font-bold uppercase tracking-[.08em] text-white">Craft from every angle</p></div>
           </Card>
           <div className="absolute -bottom-4 -right-1 z-20 grid size-28 place-items-center rounded-full border border-[#d6aa55]/30 bg-[#d6aa55] text-center text-[#061426] shadow-xl sm:-right-4 sm:size-32"><div><HardHat className="mx-auto mb-1 size-5" /><p className="font-mono text-[8px] font-bold uppercase tracking-[.16em]">General<br />Contracting</p></div></div>
         </motion.div>
