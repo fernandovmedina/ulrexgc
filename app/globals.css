@@ -1,1 +1,72 @@
 @import "tailwindcss";
+
+:root {
+  --navy: #061426;
+  --gold: #d6aa55;
+  --paper: #f3efe7;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  background: var(--navy);
+}
+
+body {
+  margin: 0;
+  background: var(--navy);
+  color: #061426;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button, a { -webkit-tap-highlight-color: transparent; }
+
+::selection {
+  background: #d6aa55;
+  color: #061426;
+}
+
+.font-mono { font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace; }
+
+.text-outline-gold {
+  color: transparent;
+  -webkit-text-stroke: 1.5px #d6aa55;
+  text-stroke: 1.5px #d6aa55;
+}
+
+.blueprint-grid {
+  background-image:
+    linear-gradient(rgba(226, 190, 108, .09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(226, 190, 108, .09) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, .035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, .035) 1px, transparent 1px);
+  background-size: 80px 80px, 80px 80px, 20px 20px, 20px 20px;
+}
+
+.loader {
+  width: 34px;
+  height: 34px;
+  border: 2px solid rgba(255,255,255,.18);
+  border-top-color: #d6aa55;
+  border-radius: 999px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+
+.animate-marquee { animation: marquee var(--duration) linear infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
