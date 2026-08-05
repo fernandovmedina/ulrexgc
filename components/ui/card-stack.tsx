@@ -18,6 +18,7 @@ export type CardStackItem = {
 
 type CardStackProps<T extends CardStackItem> = {
   items: T[];
+  language?: "en" | "es";
   initialIndex?: number;
   maxVisible?: number;
   cardWidth?: number;
@@ -40,6 +41,7 @@ function signedOffset(index: number, active: number, len: number, loop: boolean)
 
 export function CardStack<T extends CardStackItem>({
   items,
+  language = "en",
   initialIndex = 0,
   maxVisible = 5,
   cardWidth = 580,
@@ -143,10 +145,10 @@ export function CardStack<T extends CardStackItem>({
       <div className="mt-1 flex items-center justify-center gap-4">
         <div className="flex gap-2">
           {items.map((item, index) => (
-            <button key={item.id} onClick={() => setActive(index)} aria-label={`Show ${item.title}`} className={cn("h-1 rounded-full transition-all", index === active ? "w-9 bg-[#d6aa55]" : "w-4 bg-white/20 hover:bg-white/40")} />
+            <button key={item.id} onClick={() => setActive(index)} aria-label={`${language === "es" ? "Mostrar" : "Show"} ${item.title}`} className={cn("h-1 rounded-full transition-all", index === active ? "w-9 bg-[#d6aa55]" : "w-4 bg-white/20 hover:bg-white/40")} />
           ))}
         </div>
-        {activeItem.href ? <Link href={activeItem.href} className="text-white/60 hover:text-[#e2be6c]" aria-label={`Open ${activeItem.title}`}><ArrowUpRight className="size-4" /></Link> : null}
+        {activeItem.href ? <Link href={activeItem.href} className="text-white/60 hover:text-[#e2be6c]" aria-label={`${language === "es" ? "Abrir" : "Open"} ${activeItem.title}`}><ArrowUpRight className="size-4" /></Link> : null}
       </div>
     </div>
   );

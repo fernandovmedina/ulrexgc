@@ -15,6 +15,14 @@ const STAGES = [
   { label: "Signature finish", caption: "Glazing, lighting, and landscape" },
 ] as const;
 
+const SPANISH_STAGES: ReadonlyArray<{ label: string; caption: string }> = [
+  { label: "Terreno y nivelación", caption: "Levantamiento, excavación y acceso" },
+  { label: "Cimentación", caption: "Losa, zapatas y terraza" },
+  { label: "Estructura", caption: "Estructura de acero y entrepisos" },
+  { label: "Envolvente", caption: "Volúmenes, techos y revestimientos" },
+  { label: "Acabado distintivo", caption: "Cristales, iluminación y paisajismo" },
+];
+
 const STAGE_MS = 2000;
 
 /** Starting guess for the camera fit; the fit loop below refines both of these per container. */
@@ -35,7 +43,7 @@ type Part = {
   from: number;
 };
 
-export function LuxuryHomeScene({ className }: { className?: string }) {
+export function LuxuryHomeScene({ className, language = "en" }: { className?: string; language?: "en" | "es" }) {
   const mountRef = useRef<HTMLDivElement>(null);
   const levelRef = useRef(0);
   const levelChangedAtRef = useRef(0);
@@ -453,7 +461,8 @@ export function LuxuryHomeScene({ className }: { className?: string }) {
     };
   }, []);
 
-  const stage = STAGES[activeLevel];
+  const displayedStages = language === "es" ? SPANISH_STAGES : STAGES;
+  const stage = displayedStages[activeLevel];
 
   return (
     <div className={cn("relative h-full w-full", className)}>
@@ -461,7 +470,7 @@ export function LuxuryHomeScene({ className }: { className?: string }) {
         ref={mountRef}
         className="absolute inset-0 cursor-grab touch-none active:cursor-grabbing"
         role="img"
-        aria-label={`Interactive 3D luxury home build sequence, currently showing ${stage.label}`}
+        aria-label={language === "es" ? `Secuencia 3D interactiva de construcción residencial, mostrando ${stage.label}` : `Interactive 3D luxury home build sequence, currently showing ${stage.label}`}
       />
 
       <div className="pointer-events-none absolute inset-x-4 bottom-4 z-20 sm:inset-x-5 sm:bottom-5">
@@ -469,23 +478,23 @@ export function LuxuryHomeScene({ className }: { className?: string }) {
           <div className="flex items-end justify-between gap-4">
             <div className="min-w-0">
               <p className="font-mono text-[8px] uppercase tracking-[.22em] text-[#e2be6c]">
-                Layer {String(activeLevel + 1).padStart(2, "0")} / {String(STAGES.length).padStart(2, "0")} · Drag to orbit
+                {language === "es" ? "Etapa" : "Layer"} {String(activeLevel + 1).padStart(2, "0")} / {String(STAGES.length).padStart(2, "0")} · {language === "es" ? "Arrastra para girar" : "Drag to orbit"}
               </p>
               <p className="mt-1 truncate text-sm font-black uppercase tracking-[.04em] text-white">{stage.label}</p>
               <p className="truncate text-[11px] leading-4 text-white/45">{stage.caption}</p>
             </div>
             <span className="hidden shrink-0 items-center gap-2 font-mono text-[8px] uppercase tracking-[.18em] text-white/40 sm:flex">
               <span className="size-1.5 animate-pulse rounded-full bg-[#d6aa55]" />
-              Auto build
+              {language === "es" ? "Construcción automática" : "Auto build"}
             </span>
           </div>
 
           <div className="mt-3 flex gap-1.5">
-            {STAGES.map((item, index) => (
+            {displayedStages.map((item, index) => (
               <button
                 key={item.label}
                 onClick={() => setLevel(index)}
-                aria-label={`Show ${item.label}`}
+                aria-label={`${language === "es" ? "Mostrar" : "Show"} ${item.label}`}
                 aria-current={index === activeLevel}
                 className="group h-1.5 flex-1 overflow-hidden rounded-full bg-white/12 transition hover:bg-white/25"
               >
