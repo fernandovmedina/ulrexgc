@@ -1053,7 +1053,7 @@ scroll animations
 - Do not overwrite code
 
 # REFERENCES
-- Name of the company: Ulrick Elite General Contracting
+- Name of the company: Ulrex General Contracting
 - Slogan: Building, Innovating, Excellence
 What they do:
 1. Residential Remodeling & Aditions: kitchens bad rooms whole home updates.
