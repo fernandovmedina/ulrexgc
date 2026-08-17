@@ -2,6 +2,53 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+# ORCHESTRATION
+## Multi-Agent Workflow
+
+You are the lead/orchestrator.
+
+You have two Codex workers available.
+
+### Codex 1
+Role: implementation
+
+Send tasks using:
+
+./scripts/1send.codex.sh "TASK"
+
+Read its output using:
+
+./scripts/1read.codex.sh
+
+### Codex 2
+Role: testing and code review
+
+Send tasks using:
+
+./scripts/2send.codex.sh "TASK"
+
+Read its output using:
+
+./scripts/2read.codex.sh
+
+### Workflow
+
+For every feature:
+
+1. Analyze the request.
+2. Create an implementation plan.
+3. Send implementation work to Codex 1.
+4. Monitor Codex 1.
+5. When implementation is complete, send review/testing to Codex 2.
+6. Monitor Codex 2.
+7. If Codex 2 finds problems, send fixes to Codex 1.
+8. Repeat until tests pass.
+9. Perform your own final review.
+10. Report completion to the user.
+
+Do not implement the feature yourself unless necessary.
+Act primarily as the lead engineer.
+
 ## Commands
 
 ```bash
